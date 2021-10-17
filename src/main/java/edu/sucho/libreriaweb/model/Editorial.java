@@ -1,4 +1,4 @@
-package edu.sucho.libreriaweb.entity;
+package edu.sucho.libreriaweb.model;
 
 import lombok.Getter;
 import lombok.Setter;

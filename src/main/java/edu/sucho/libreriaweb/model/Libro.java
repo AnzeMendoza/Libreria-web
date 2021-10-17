@@ -1,33 +1,44 @@
-package edu.sucho.libreriaweb.entity;
+package edu.sucho.libreriaweb.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
-@ToString
 @Table(name = "libro")
 public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(length = 64)
+    private String titulo;
+
+/*
     private Long isbn;
     private Integer anio;
     private Integer ejemplares;
     private Integer ejemplaresPrestados;
     private Integer ejemplaresRestantes;
     private Boolean alta;
+*/
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_autor")
     private Autor autor;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_editorial")
     private Editorial editorial;
+
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                '}';
+    }
 }
