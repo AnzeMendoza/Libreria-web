@@ -1,10 +1,11 @@
 package edu.sucho.libreriaweb.model;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,29 +22,6 @@ public class Autor {
 
     private Boolean alta;
 
-    /*
     @OneToMany(mappedBy = "autor")
     private List<Libro> libros;
-    */
-    @Override
-    public String toString() {
-        return "Autor{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", alta=" + alta +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Autor autor = (Autor) o;
-        return id != null && Objects.equals(id, autor.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
 }

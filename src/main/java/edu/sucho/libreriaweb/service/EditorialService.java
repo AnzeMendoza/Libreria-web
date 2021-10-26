@@ -1,7 +1,6 @@
 package edu.sucho.libreriaweb.service;
 
-import org.springframework.stereotype.Service;
+import edu.sucho.libreriaweb.model.Editorial;
 
-@Service
-public class EditorialService {
+public interface EditorialService extends BaseService<Editorial, Long>{
 }

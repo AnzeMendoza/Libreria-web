@@ -33,12 +33,4 @@ public class Libro {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_editorial")
     private Editorial editorial;
-
-    @Override
-    public String toString() {
-        return "Libro{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                '}';
-    }
 }
