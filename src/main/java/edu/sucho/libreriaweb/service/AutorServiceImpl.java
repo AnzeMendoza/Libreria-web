@@ -2,11 +2,11 @@ package edu.sucho.libreriaweb.service;
 
 import edu.sucho.libreriaweb.model.Autor;
 import edu.sucho.libreriaweb.repository.BaseRepository;
+import org.springframework.stereotype.Service;
 
-public class AutorServiceImpl extends BaseServiceImpl<Autor, Long> implements AutorService{
-    public AutorServiceImpl(BaseRepository<Autor, Long> baseRepository) {
+@Service
+public class AutorServiceImpl extends BaseServiceImpl<Autor, Integer> implements AutorService {
+    public AutorServiceImpl(BaseRepository<Autor, Integer> baseRepository) {
         super(baseRepository);
     }
-
-
 }

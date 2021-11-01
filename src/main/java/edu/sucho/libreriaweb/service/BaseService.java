@@ -1,7 +1,6 @@
 package edu.sucho.libreriaweb.service;
 
 import edu.sucho.libreriaweb.exception.ExceptionBBDD;
-
 import java.util.List;
 
 public interface BaseService<E, I> {

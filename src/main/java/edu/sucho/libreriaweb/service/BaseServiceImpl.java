@@ -2,13 +2,11 @@ package edu.sucho.libreriaweb.service;
 
 import edu.sucho.libreriaweb.exception.ExceptionBBDD;
 import edu.sucho.libreriaweb.repository.BaseRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
 public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
 
     protected BaseRepository<E, ID> baseRepository;
@@ -20,10 +18,10 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
     @Override
     @Transactional
     public E save(E entity) throws ExceptionBBDD {
+        Optional<E> entityOptional;
         try {
             entity = baseRepository.save(entity);
         } catch (Exception e){
-            log.info(">>> save <<<");
             throw new ExceptionBBDD(e.getMessage());
         }
         return entity;
@@ -39,7 +37,6 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
             entityUpdate = entityOptional.get();
             entityUpdate = baseRepository.save(entity);
         } catch (Exception e){
-            log.info(">>> update <<<");
             throw new ExceptionBBDD(e.getMessage());
         }
         return entityUpdate;
@@ -55,7 +52,6 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
                 throw new ExceptionBBDD("");
             }
         } catch (Exception e){
-            log.info(">>> delete <<<");
             throw new ExceptionBBDD(e.getMessage());
         }
         return true;
@@ -68,7 +64,6 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
         try {
             entityEncontrada = baseRepository.findById(id);
         } catch (Exception e){
-            log.info(">>> findById <<<");
             throw new ExceptionBBDD(e.getMessage());
         }
         return entityEncontrada.get();
@@ -81,7 +76,6 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
         try {
             entities = baseRepository.findAll();
         } catch (Exception e){
-            log.info(">>> findAll <<<");
             throw new ExceptionBBDD(e.getMessage());
         }
         return entities;

@@ -17,14 +17,12 @@ public class Libro {
     @Column(length = 64)
     private String titulo;
 
-/*
     private Long isbn;
     private Integer anio;
     private Integer ejemplares;
     private Integer ejemplaresPrestados;
     private Integer ejemplaresRestantes;
     private Boolean alta;
-*/
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_autor")

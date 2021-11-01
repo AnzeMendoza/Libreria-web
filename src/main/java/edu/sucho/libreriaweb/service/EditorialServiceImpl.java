@@ -2,9 +2,11 @@ package edu.sucho.libreriaweb.service;
 
 import edu.sucho.libreriaweb.model.Editorial;
 import edu.sucho.libreriaweb.repository.BaseRepository;
+import org.springframework.stereotype.Service;
 
-public class EditorialServiceImpl extends BaseServiceImpl<Editorial, Long> implements EditorialService{
-    public EditorialServiceImpl(BaseRepository<Editorial, Long> baseRepository) {
+@Service
+public class EditorialServiceImpl extends BaseServiceImpl<Editorial, Integer> implements EditorialService{
+    public EditorialServiceImpl(BaseRepository<Editorial, Integer> baseRepository) {
         super(baseRepository);
     }
 }
