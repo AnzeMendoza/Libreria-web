@@ -22,7 +22,7 @@ public class Libro {
     private Integer ejemplares;
     private Integer ejemplaresPrestados;
     private Integer ejemplaresRestantes;
-    private Boolean alta;
+    private Boolean alta = true;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_autor")

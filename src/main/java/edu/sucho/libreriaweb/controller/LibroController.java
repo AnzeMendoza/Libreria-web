@@ -1,9 +1,7 @@
 package edu.sucho.libreriaweb.controller;
 
 import edu.sucho.libreriaweb.model.Libro;
-import edu.sucho.libreriaweb.service.AutorService;
-import edu.sucho.libreriaweb.service.EditorialService;
-import edu.sucho.libreriaweb.service.LibroService;
+import edu.sucho.libreriaweb.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,10 +27,14 @@ public class LibroController {
     @Autowired
     private LibroService libroService;
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String index(Model model) {
         try{
-            log.info("MyController");
+            List<Libro> librosActivos = libroService.findAllByAlta();
+            System.out.println("<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<");
+            System.out.println(librosActivos);
+            System.out.println("<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<");
+            model.addAttribute("librosActivos", librosActivos);
             return "index";
         } catch (Exception e){
             model.addAttribute("error", e.getMessage());
@@ -73,16 +75,33 @@ public class LibroController {
     @PostMapping("/formulario/libro/{id}")
     public String libroAlta(@ModelAttribute("libro") Libro libro, Model model, @PathVariable("id") int id){
         try {
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> id: " + id);
             if(id==0){
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> antes save");
                 libroService.save(libro);
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> despues save");
             } else {
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> antes update");
                 libroService.update(id, libro);
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> despues update");
             }
+            return "redirect:/libros";
+        } catch (Exception e){
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
+    }
+
+    @GetMapping("/eliminar/libro/{id}")
+    public String eliminarLibro(Model model, @PathVariable("id") int id){
+        try{
+            model.addAttribute("libro", libroService.findById(id));
+            return "views/form/eliminarLibro";
+        } catch (Exception e){
+            model.addAttribute("error", e.getMessage());
+            return "error";
+        }
+    }
+
+    @PostMapping("/eliminar/libro/{id}")
+    public String desactivarLibro(Model model, @PathVariable("id") int id){
+        try {
+            libroService.deleteByIdSoft(id);
             return "redirect:/libros";
         } catch (Exception e){
             model.addAttribute("error", e.getMessage());

@@ -46,8 +46,12 @@
                 <td th:text="${libro.alta}">alta</td>
                 <td th:text="${libro.ejemplares}">ejemplares</td>
                 <td>
-                    <a th:href="@{formulario/libro/{id}(id=${libro.id})}" class="btn btn-warning">Editar</a>
-                    <a th:href="@{eliminar/libro/{id}(id=${libro.id})}" class="btn btn-danger">Eliminar</a>
+                    <a th:href="@{/formulario/libro/{id}(id=${libro.id})}" class="btn btn-warning">Editar</a>
+                    <a th:href="@{/eliminar/libro/{id}(id=${libro.id})}"
+                       class="btn "
+                       th:classappend="${libro.alta} ? btn-danger : btn-success"
+                       th:text="${libro.alta} ? Desactivar : Activar"
+                    >Eliminar</a>
                 </td>
             </tr>
             </tbody>
