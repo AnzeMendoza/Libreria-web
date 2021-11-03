@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <title>libros view</title>
+</head>
+
+<body>
+<div class="container">
+  <nav th:replace="components/fragments::nav_main"></nav>
+
+  <div class="row">
+    <div class="col-3">
+      <h4>Crud Libro</h4>
+    </div>
+    <div class="col-9 d-flex flex-row-reverse">
+      <a th:href="@{formulario/autor/0}" class="btn btn-success">Agregar Libro</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Alta</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr th:each="autor:${autores}" th:classappend="${autor.alta} ? table-success : table-danger">
+        <td th:text="${autor.id}">id</td>
+        <td th:text="${autor.nombre}">nombre.autor</td>
+        <td th:text="${autor.alta}">alta</td>
+        <td>
+          <a th:href="@{/formulario/autor/__${autor.id}__}" class="btn btn-warning">Editar</a>
+          <a th:href="@{/eliminar/autor/__${autor.id}__}"
+             class="btn"
+             th:classappend="${autor.alta} ? btn-danger : btn-success"
+             th:text="${autor.alta} ? Desactivar : Activar">
+            Eliminar
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script th:replace="components/fragments::script_main"></script>
+</body>
+</html>

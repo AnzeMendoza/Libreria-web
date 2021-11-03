@@ -16,7 +16,7 @@
 
   <div class="card">
     <div class="card-body">
-      <form th:action="@{/formulario/libro/__${id}__(id=__${libro.id}__)}" method="post" th:object="${libro}">
+      <form th:action="@{/formulario/libro/__${id}__}" method="post" th:object="${libro}">
         <div class="row g-3">
 
           <div class="form-group col-md-6">
@@ -57,14 +57,20 @@
           <div class="form-group col-md-6">
             <label for="autor">Autor:</label>
             <select class="form-control" id="autor" th:field="*{autor}">
-              <option th:each="autor:${autores}" th:value="${autor.id}" th:text="${autor.nombre}"></option>
+              <option th:each="autor:${autores}"
+                      th:value="${autor.id}"
+                      th:text="${autor.nombre}">
+              </option>
             </select>
           </div>
 
           <div class="form-group col-md-6">
             <label for="editorial">Editorial:</label>
             <select class="form-control" id="editorial" th:field="*{editorial}">
-              <option th:each="editorial:${editoriales}" th:value="${editorial.id}" th:text="${editorial.nombre}"></option>
+              <option th:each="editorial:${editoriales}"
+                      th:value="${editorial.id}"
+                      th:text="${editorial.nombre}">
+              </option>
             </select>
           </div>
 

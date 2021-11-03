@@ -9,4 +9,5 @@ public interface BaseService<E, I> {
     Boolean delete(I i) throws ExceptionBBDD;
     E findById(I i) throws ExceptionBBDD;
     List<E> findAll() throws ExceptionBBDD;
+//    Boolean deleteByIdSoft(I i, E entity) throws ExceptionBBDD;
 }

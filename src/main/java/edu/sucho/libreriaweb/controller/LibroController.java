@@ -1,8 +1,9 @@
 package edu.sucho.libreriaweb.controller;
 
 import edu.sucho.libreriaweb.model.Libro;
-import edu.sucho.libreriaweb.service.*;
-import lombok.extern.slf4j.Slf4j;
+import edu.sucho.libreriaweb.service.AutorService;
+import edu.sucho.libreriaweb.service.EditorialService;
+import edu.sucho.libreriaweb.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@Slf4j
 public class LibroController {
 
     @Autowired
@@ -31,9 +31,6 @@ public class LibroController {
     public String index(Model model) {
         try{
             List<Libro> librosActivos = libroService.findAllByAlta();
-            System.out.println("<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<");
-            System.out.println(librosActivos);
-            System.out.println("<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<");
             model.addAttribute("librosActivos", librosActivos);
             return "index";
         } catch (Exception e){
@@ -57,8 +54,8 @@ public class LibroController {
     @GetMapping("/formulario/libro/{id}")
     public String libroFormulario(Model model, @PathVariable("id") int id){
         try{
-            model.addAttribute("autores", autorService.findAll());
-            model.addAttribute("editoriales", editorialService.findAll());
+            model.addAttribute("autores", autorService.findAllByAlta());
+            model.addAttribute("editoriales", editorialService.findAllByAlta());
 
             if(id==0){
                 model.addAttribute("libro", new Libro());

@@ -20,7 +20,7 @@ public class Autor {
     @Column(length = 64)
     private String nombre;
 
-    private Boolean alta;
+    private Boolean alta = true;
 
     @OneToMany(mappedBy = "autor")
     private List<Libro> libros;

@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
+public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID> {
 
     protected BaseRepository<E, ID> baseRepository;
 
@@ -21,7 +21,7 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
         Optional<E> entityOptional;
         try {
             entity = baseRepository.save(entity);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new ExceptionBBDD(e.getMessage());
         }
         return entity;
@@ -36,7 +36,7 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
             entityOptional = baseRepository.findById(id);
             entityUpdate = entityOptional.get();
             entityUpdate = baseRepository.save(entity);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new ExceptionBBDD(e.getMessage());
         }
         return entityUpdate;
@@ -46,12 +46,12 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
     @Transactional
     public Boolean delete(ID id) throws ExceptionBBDD {
         try {
-            if(baseRepository.existsById(id)){
+            if (baseRepository.existsById(id)) {
                 baseRepository.deleteById(id);
             } else {
                 throw new ExceptionBBDD("");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new ExceptionBBDD(e.getMessage());
         }
         return true;
@@ -63,7 +63,7 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
         Optional<E> entityEncontrada;
         try {
             entityEncontrada = baseRepository.findById(id);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new ExceptionBBDD(e.getMessage());
         }
         return entityEncontrada.get();
@@ -75,9 +75,29 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID>{
         List<E> entities;
         try {
             entities = baseRepository.findAll();
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new ExceptionBBDD(e.getMessage());
         }
         return entities;
     }
+
+    // TODO se puede pasar a generico pero las entidaddes tiene que extender de clase base, ver despues
+/*    @Override
+    @Transactional
+    public Boolean deleteByIdSoft(ID id, E entity) throws ExceptionBBDD {
+        try {
+            Optional<E> entityOptional = baseRepository.findById(id);
+            if (entityOptional.isPresent()) {
+                E entityDelete = entityOptional.get();
+                entity.setAlta(!entity.getAlta());
+                baseRepository.save(entityDelete);
+            } else {
+                throw new ExceptionBBDD("deleteByIdSoft");
+            }
+            return true;
+        } catch (Exception e) {
+            throw new ExceptionBBDD(e.getMessage());
+        }
+    }*/
+
 }
