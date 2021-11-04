@@ -73,7 +73,7 @@ public class AutorController {
     }
 
     @PostMapping("/eliminar/autor/{id}")
-    public String autorDesactivar(Model model, @ModelAttribute("id") Autor autor, @PathVariable("id") int id){
+    public String autorDesactivar(Model model, @PathVariable("id") int id){
         try {
             model.addAttribute("autor", autorService.deleteByIdSoft(id));
             return "redirect:/autores";

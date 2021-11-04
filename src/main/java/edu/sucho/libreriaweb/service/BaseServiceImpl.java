@@ -81,7 +81,7 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID> {
         return entities;
     }
 
-    // TODO se puede pasar a generico pero las entidaddes tiene que extender de clase base, ver despues
+    // TODO se puede pasar a generico pero las entidades tiene que extender de clase base, ver despues
 /*    @Override
     @Transactional
     public Boolean deleteByIdSoft(ID id, E entity) throws ExceptionBBDD {

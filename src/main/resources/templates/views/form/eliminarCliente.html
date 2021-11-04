@@ -9,7 +9,7 @@
         rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
         crossorigin="anonymous">
-  <title>Eliminar Autor</title>
+  <title>Eliminar Cliente</title>
 </head>
 
 <body>
@@ -21,11 +21,11 @@
   <div class="row mt-3">
     <div class="card">
       <div class="card-body">
-        <form th:action="@{/eliminar/autor/__${id}__}" method="post">
+        <form th:action="@{/eliminar/cliente/__${id}__}" method="post">
           <div class="row g-3 text-center">
 
             <div class="form-group col-md-3">
-              <h4> Esta seguro de Eliminar este autor?</h4>
+              <h4> Esta seguro de Eliminar este cliente?</h4>
             </div>
           </div>
 
@@ -36,7 +36,7 @@
               </button>
             </div>
             <div class="col-md-6">
-              <a class="btn btn-success" th:href="@{/autores}" style="width:100%">No</a>
+              <a class="btn btn-success" th:href="@{/clientes}" style="width:100%">No</a>
             </div>
           </div>
 

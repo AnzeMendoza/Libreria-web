@@ -9,7 +9,7 @@
         rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
         crossorigin="anonymous">
-  <title>Formulario autor</title>
+  <title>Formulario Prestamo</title>
 </head>
 
 <body>
@@ -18,18 +18,34 @@
 
   <div class="card">
     <div class="card-body">
-      <form th:action="@{/formulario/autor/__${id}__}" method="post" th:object="${autor}">
+      <form th:action="@{/formulario/prestamo/__${id}__}" method="post" th:object="${prestamo}">
         <div class="row g-3">
 
           <div class="form-group col-md-6">
-            <label for="nombre">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" th:field="*{nombre}">
+            <label for="fechaPrestamo">Fecha de prestamo:</label>
+            <input type="date" class="form-control" id="fechaPrestamo" th:field="*{fechaPrestamo}">
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="fechaDevolucion">Fecha de prestamo:</label>
+            <input type="date" class="form-control" id="fechaDevolucion" th:field="*{fechaDevolucion}">
           </div>
 
           <div class="form-group col-md-6">
             <label for="alta">Alta:</label>
             <input type="text" class="form-control" id="alta" th:field="*{alta}">
           </div>
+
+          <div class="form-group col-md-6">
+            <label for="libro">Libro:</label>
+            <select class="form-control" id="libro" th:field="*{libros}">
+              <option th:each="libro:${libros}"
+                      th:value="${libro.id}"
+                      th:text="${libro.nombre}">
+              </option>
+            </select>
+          </div>
+
 
           <div class="row m-3">
             <div class="col-md-6">
