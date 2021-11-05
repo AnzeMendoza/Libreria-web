@@ -15,4 +15,12 @@ public interface LibroService extends BaseService<Libro, Integer>{
 
     boolean deleteByIdSoft(int id) throws ExceptionBBDD;
 
+
+    List<Libro> findAllByAltaAndInStock() throws ExceptionBBDD;
+
+    /*
+    void addOneLibro(int id) throws ExceptionBBDD;
+
+    void substractOneLibro(int id) throws ExceptionBBDD;*/
+
 }

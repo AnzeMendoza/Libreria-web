@@ -44,19 +44,17 @@
         <td th:text="${prestamo.fechaPrestamo}">prestamo.fechaPrestamo</td>
         <td th:text="${prestamo.fechaDevolucion}">prestamo.fechaDevolucion</td>
         <td th:text="${prestamo.alta}">prestamo.alta</td>
+        <td th:text="${prestamo.libro.titulo}">prestamo.libro.titulo</td>
+        <td th:text="${prestamo.cliente.apellido}">prestamo.cliente.apellido</td>
 
-        <td th:each="libro:${prestamo.libro}">
-          <td th:text="${libro.titulo}">prestamo.libro.titulo</td>
-        </td>
-
-        <td th:text="${prestamo.cliente.nombre}">prestamo.cliente.nombre</td>
         <td>
-<!--          <a th:href="@{/formulario/libro/__${libro.id}__}" class="btn btn-warning">Editar</a>
-          <a th:href="@{/eliminar/libro/__${libro.id}__}"
+          <a th:href="@{/formulario/prestamo/__${prestamo.id}__}" class="btn btn-warning">Editar</a>
+          <a th:href="@{/eliminar/prestamo/__${prestamo.id}__}"
              class="btn "
-             th:classappend="${libro.alta} ? btn-danger : btn-success"
-             th:text="${libro.alta} ? Desactivar : Activar"
-          >Eliminar</a>-->
+             th:classappend="${prestamo.alta} ? btn-danger : btn-success"
+             th:text="${prestamo.alta} ? Desactivar : Activar">
+            Eliminar
+          </a>
         </td>
       </tr>
       </tbody>

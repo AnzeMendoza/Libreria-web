@@ -32,7 +32,4 @@ public class Libro {
     @JoinColumn(name = "fk_editorial")
     private Editorial editorial;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "fk_prestamo")
-    private Prestamo prestamo;
 }

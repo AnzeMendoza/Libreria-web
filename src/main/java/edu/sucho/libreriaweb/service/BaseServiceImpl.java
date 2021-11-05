@@ -99,5 +99,4 @@ public abstract class BaseServiceImpl<E, ID> implements BaseService<E, ID> {
             throw new ExceptionBBDD(e.getMessage());
         }
     }*/
-
 }

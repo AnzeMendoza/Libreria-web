@@ -3,10 +3,10 @@ package edu.sucho.libreriaweb.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -20,17 +20,20 @@ public class Prestamo {
     private Integer id;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaPrestamo;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaDevolucion;
 
-    private Boolean alta;
+    private Boolean alta = true;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    private List<Libro> libros;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fk_libro")
+    private Libro libro;
 
-    @OneToOne(mappedBy = "", cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
 }

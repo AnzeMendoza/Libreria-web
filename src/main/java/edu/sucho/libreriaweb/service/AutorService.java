@@ -10,5 +10,4 @@ public interface AutorService extends BaseService<Autor, Integer>{
     boolean deleteByIdSoft(int id) throws ExceptionBBDD;
 
     List<Autor> findAllByAlta() throws ExceptionBBDD;
-
 }

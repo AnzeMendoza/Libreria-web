@@ -38,13 +38,24 @@
 
           <div class="form-group col-md-6">
             <label for="libro">Libro:</label>
-            <select class="form-control" id="libro" th:field="*{libros}">
+            <select class="form-control" id="libro" th:field="*{libro}">
               <option th:each="libro:${libros}"
                       th:value="${libro.id}"
-                      th:text="${libro.nombre}">
+                      th:text="${libro.titulo}">
               </option>
             </select>
           </div>
+
+          <div class="form-group col-md-6">
+            <label for="cliente">Cliente:</label>
+            <select class="form-control" id="cliente" th:field="*{cliente}">
+              <option th:each="cliente:${clientes}"
+                      th:value="${cliente.id}"
+                      th:text="${cliente.nombre}  +  ${cliente.apellido}">
+              </option>
+            </select>
+          </div>
+
 
 
           <div class="row m-3">

@@ -26,7 +26,8 @@ public class Cliente {
 
     @Column(length = 64)
     private String telefono;
-    private Boolean alta;
+
+    private Boolean alta = true;
 
     @OneToOne(mappedBy = "cliente")
     private Prestamo prestamo;
