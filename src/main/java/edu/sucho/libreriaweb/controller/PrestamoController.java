@@ -19,13 +19,13 @@ import java.util.Optional;
 public class PrestamoController {
 
     @Autowired
-    private PrestamoService prestamoService;
-
-    @Autowired
     private LibroService libroService;
 
     @Autowired
     private ClienteService clienteService;
+
+    @Autowired
+    private PrestamoService prestamoService;
 
     @GetMapping("/prestamos")
     public String prestamos(Model model){
@@ -62,7 +62,7 @@ public class PrestamoController {
     public String prestamoFormulario(Model model, @PathVariable("id") int id, @ModelAttribute("prestamo") Prestamo prestamo) {
         try {
             if (id == 0) {
-//                libroService.substractOneLibro(prestamo.getLibro().getId());
+                prestamo.setLibro(libroService.substractOneLibro(prestamo.getLibro().getId()));
                 prestamoService.save(prestamo);
             } else {
                 prestamoService.update(id, prestamo);
@@ -88,6 +88,7 @@ public class PrestamoController {
     @PostMapping("/eliminar/prestamo/{id}")
     public String prestamoDesactivar(Model model, @PathVariable("id") int id){
         try {
+            
             model.addAttribute("prestamo", prestamoService.deleteByIdSoft(id));
             return "redirect:/prestamos";
         } catch (Exception e) {

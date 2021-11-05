@@ -84,33 +84,29 @@ public class LibroServiceImpl extends BaseServiceImpl<Libro, Integer> implements
         }
     }
 
-/*    @Override
-    @Transactional
-    public void substractOneLibro(int id) throws ExceptionBBDD {
+    @Override
+    public Libro substractOneLibro(int id) throws ExceptionBBDD {
         try {
             Optional<Libro> libroOptional = Optional.ofNullable(libroRepository.findByIdAndAlta(id));
             Libro libroAextraerUnEjemplar = libroOptional.get();
             libroAextraerUnEjemplar.setEjemplaresPrestados(libroAextraerUnEjemplar.getEjemplaresPrestados() + 1);
-            libroAextraerUnEjemplar.setEjemplares(libroAextraerUnEjemplar.getEjemplares() - 1);
-            libroAextraerUnEjemplar.setEjemplaresRestantes(libroAextraerUnEjemplar.getEjemplares()-libroAextraerUnEjemplar.getEjemplaresPrestados());
-            update(id,libroAextraerUnEjemplar);
+            libroAextraerUnEjemplar.setEjemplaresRestantes(libroAextraerUnEjemplar.getEjemplares() - 1);
+            return libroAextraerUnEjemplar;
         } catch (Exception e) {
             throw new ExceptionBBDD(e.getMessage());
         }
     }
 
     @Override
-    @Transactional
-    public void addOneLibro(int id) throws ExceptionBBDD {
+    public Libro addOneLibro(int id) throws ExceptionBBDD {
         try {
             Optional<Libro> libroOptional = Optional.ofNullable(libroRepository.findByIdAndAlta(id));
             Libro libroAextraerUnEjemplar = libroOptional.get();
             libroAextraerUnEjemplar.setEjemplaresPrestados(libroAextraerUnEjemplar.getEjemplaresPrestados() - 1);
-            libroAextraerUnEjemplar.setEjemplares(libroAextraerUnEjemplar.getEjemplares() + 1);
-            libroAextraerUnEjemplar.setEjemplaresRestantes(libroAextraerUnEjemplar.getEjemplares()-libroAextraerUnEjemplar.getEjemplaresPrestados());
-            update(id,libroAextraerUnEjemplar);
+            libroAextraerUnEjemplar.setEjemplaresRestantes(libroAextraerUnEjemplar.getEjemplares() + 1);
+            return libroAextraerUnEjemplar;
         } catch (Exception e) {
             throw new ExceptionBBDD(e.getMessage());
         }
-    }*/
+    }
 }

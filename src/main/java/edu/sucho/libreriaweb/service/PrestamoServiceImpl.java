@@ -1,6 +1,7 @@
 package edu.sucho.libreriaweb.service;
 
 import edu.sucho.libreriaweb.exception.ExceptionBBDD;
+import edu.sucho.libreriaweb.model.Libro;
 import edu.sucho.libreriaweb.model.Prestamo;
 import edu.sucho.libreriaweb.repository.BaseRepository;
 import edu.sucho.libreriaweb.repository.PrestamoRepository;
@@ -41,7 +42,13 @@ public class PrestamoServiceImpl extends BaseServiceImpl<Prestamo, Integer> impl
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Prestamo> findAllByAlta() throws ExceptionBBDD {
-        return null;
+        try {
+            Optional<List<Prestamo>> prestamosOptional = Optional.ofNullable(prestamoRepository.findAllByAlta());
+            return prestamosOptional.get();
+        } catch (Exception e) {
+            throw new ExceptionBBDD(e.getMessage());
+        }
     }
 }
