@@ -20,6 +20,8 @@ public class Autor {
     private Integer id;
 
     @Column(length = 64)
+    @NotEmpty(message = "El nombre es obligatorio")
+    @Size(min = 2, max = 64, message = "Debe tener min 2 caracteres y menos de 64")
     private String nombre;
 
     private Boolean alta = true;

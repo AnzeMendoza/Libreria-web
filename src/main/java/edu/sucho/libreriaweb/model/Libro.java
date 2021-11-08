@@ -32,17 +32,4 @@ public class Libro {
     @JoinColumn(name = "fk_editorial")
     private Editorial editorial;
 
-    @Override
-    public String toString() {
-        return "Libro{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", isbn=" + isbn +
-                ", anio=" + anio +
-                ", ejemplares=" + ejemplares +
-                ", ejemplaresPrestados=" + ejemplaresPrestados +
-                ", ejemplaresRestantes=" + ejemplaresRestantes +
-                ", alta=" + alta +
-                '}';
-    }
 }
