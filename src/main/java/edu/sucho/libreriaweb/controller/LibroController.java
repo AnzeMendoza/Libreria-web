@@ -42,8 +42,8 @@ public class LibroController {
     @GetMapping("/libros")
     public String librosCrud(Model model){
         try{
-            Optional<List<Libro>> librosOptional = Optional.ofNullable(libroService.findAll());
-            model.addAttribute("libros", librosOptional.get());
+            List<Libro> librosOptional =libroService.findAll();
+            model.addAttribute("libros", librosOptional);
             return "views/libros";
         } catch (Exception e){
             model.addAttribute("error", e.getMessage());

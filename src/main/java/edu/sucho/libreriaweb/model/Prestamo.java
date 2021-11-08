@@ -29,11 +29,11 @@ public class Prestamo {
 
     private Boolean alta = true;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_libro")
     private Libro libro;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_cliente")
     private Cliente cliente;
 }

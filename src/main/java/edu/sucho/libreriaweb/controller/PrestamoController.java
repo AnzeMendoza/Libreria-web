@@ -1,5 +1,6 @@
 package edu.sucho.libreriaweb.controller;
 
+import edu.sucho.libreriaweb.model.Libro;
 import edu.sucho.libreriaweb.model.Prestamo;
 import edu.sucho.libreriaweb.service.ClienteService;
 import edu.sucho.libreriaweb.service.LibroService;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class PrestamoController {
@@ -30,8 +30,8 @@ public class PrestamoController {
     @GetMapping("/prestamos")
     public String prestamos(Model model){
         try{
-            Optional<List<Prestamo>> prestamosOptional = Optional.ofNullable(prestamoService.findAll());
-            model.addAttribute("prestamos", prestamosOptional.get());
+            List<Prestamo> prestamosOptional = prestamoService.findAll();
+            model.addAttribute("prestamos", prestamosOptional);
             return "views/prestamos";
         } catch (Exception e){
             model.addAttribute("error", e.getMessage());
@@ -62,8 +62,10 @@ public class PrestamoController {
     public String prestamoFormulario(Model model, @PathVariable("id") int id, @ModelAttribute("prestamo") Prestamo prestamo) {
         try {
             if (id == 0) {
-                prestamo.setLibro(libroService.substractOneLibro(prestamo.getLibro().getId()));
+                // TODO pasar a una clase PrestamoManager
                 prestamoService.save(prestamo);
+                Libro libroARestarUnEjemplar = libroService.substractOneLibro(prestamo.getLibro().getId());
+                libroService.update(libroARestarUnEjemplar.getId(),libroARestarUnEjemplar);
             } else {
                 prestamoService.update(id, prestamo);
             }

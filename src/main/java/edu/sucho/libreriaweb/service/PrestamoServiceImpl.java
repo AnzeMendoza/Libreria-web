@@ -18,6 +18,9 @@ public class PrestamoServiceImpl extends BaseServiceImpl<Prestamo, Integer> impl
     @Autowired
     private PrestamoRepository prestamoRepository;
 
+    @Autowired
+    private LibroService libroService;
+
     public PrestamoServiceImpl(BaseRepository<Prestamo, Integer> baseRepository) {
         super(baseRepository);
     }
@@ -31,6 +34,10 @@ public class PrestamoServiceImpl extends BaseServiceImpl<Prestamo, Integer> impl
             if(prestamoOptional.isPresent()){
                 Prestamo prestamo = prestamoOptional.get();
                 prestamo.setAlta(!prestamo.getAlta());
+
+                Libro libroAAgregarPrestamo = libroService.substractOneLibro(prestamo.getLibro().getId());
+                libroService.update(libroAAgregarPrestamo.getId(), libroAAgregarPrestamo);
+
                 prestamoRepository.save(prestamo);
             } else {
                 throw new ExceptionBBDD("deleteByIdSoft");

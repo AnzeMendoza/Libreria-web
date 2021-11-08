@@ -90,7 +90,7 @@ public class LibroServiceImpl extends BaseServiceImpl<Libro, Integer> implements
             Optional<Libro> libroOptional = Optional.ofNullable(libroRepository.findByIdAndAlta(id));
             Libro libroAextraerUnEjemplar = libroOptional.get();
             libroAextraerUnEjemplar.setEjemplaresPrestados(libroAextraerUnEjemplar.getEjemplaresPrestados() + 1);
-            libroAextraerUnEjemplar.setEjemplaresRestantes(libroAextraerUnEjemplar.getEjemplares() - 1);
+            libroAextraerUnEjemplar.setEjemplaresRestantes(libroAextraerUnEjemplar.getEjemplares() - libroAextraerUnEjemplar.getEjemplaresPrestados());
             return libroAextraerUnEjemplar;
         } catch (Exception e) {
             throw new ExceptionBBDD(e.getMessage());
